@@ -1,0 +1,40 @@
+{
+  "split_seed": 42,
+  "fit_seed": 0,
+  "config": "ablation_no_codec.yaml",
+  "checkpoint": null,
+  "results": {
+    "mlaad_v5": {
+      "fpr95": 1.28,
+      "ood_eer": 3.451428571428571,
+      "id_acc": 99.68,
+      "n_known_classes": 65,
+      "n_eval": 9620,
+      "n_eval_id": 4375,
+      "n_eval_ood": 5245
+    },
+    "stopa": {
+      "unknown_atk_eer": 8.07859637980311,
+      "six_eers": {
+        "ATK": {
+          "known": 9.376667195935214,
+          "unknown": 8.07859637980311
+        },
+        "AM": {
+          "known": 9.376667195935214,
+          "unknown": 8.07859637980311
+        },
+        "VM": {
+          "known": 4.751614269080131,
+          "unknown": 9.35939980946332
+        }
+      },
+      "n_tee": 33200,
+      "n_trials": 629800
+    }
+  },
+  "sota": {
+    "mlaad_v5_fpr95": 3.36,
+    "stopa_unknown_atk_eer": 16.43
+  }
+}

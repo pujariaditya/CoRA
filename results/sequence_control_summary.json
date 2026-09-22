@@ -1,0 +1,18 @@
+{
+ "split_seed": 42,
+ "fit_seed": 0,
+ "arms": {
+  "moment_pooling_order_invariant": {
+   "summary": "[mean|std] over layers 4-7",
+   "fpr95": 1.0742857142857143,
+   "ood_eer": 3.5428571428571427
+  },
+  "sequence_preserving_order_sensitive": {
+   "summary": "[mean(first half)|mean(second half)] over layers 4-7",
+   "fpr95": 1.3257142857142858,
+   "ood_eer": 3.04
+  }
+ },
+ "delta_fpr95_order_sensitive_minus_invariant": 0.25142857142857156,
+ "_historical": "measured before 2026-09-18 with WavLM layers 4-7 and the fixed random residual projection; kept as the record of those controls, not comparable to the current results/ablation/"
+}

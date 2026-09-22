@@ -1,0 +1,15 @@
+{
+ "variant": "seq2_4_7",
+ "split_seed": 42,
+ "fit_seed": 0,
+ "_note": "Re-extracted WavLM block; sig+codec spliced from the shipped cache. Compare these arms only against each other, never against results/ablation/.",
+ "results": {
+  "mlaad_v5": {
+   "fpr95": 1.3257142857142858,
+   "ood_eer": 3.04,
+   "n_known_classes": 65,
+   "n_eval": 9620
+  }
+ },
+ "_historical": "measured before 2026-09-18 with WavLM layers 4-7 and the fixed random residual projection; kept as the record of those controls, not comparable to the current results/ablation/"
+}

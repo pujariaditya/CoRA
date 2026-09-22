@@ -1,0 +1,6 @@
+# Ablation: score with the conformal margin alone, no relative-Mahalanobis term.
+#
+# Equivalent to ST_ABL_DENS_WEIGHT=0.
+# Target: results/ablation/conformal_only.json
+scoring:
+  dens_weight: 0.0

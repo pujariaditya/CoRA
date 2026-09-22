@@ -1,0 +1,9 @@
+# Ablation: remove the codec-residual subspace from the head.
+#
+# The paper's headline ablation. Equivalent to ST_ABL_CODEC_WEIGHT=0.
+# Measured (layers 1-4, trained projection): FPR95 1.28 against the full model's 0.5029,
+# OOD-EER 3.45 against 2.45, known-model accuracy 99.68 against 99.86; on STOPA the
+# held-out EER rises from 6.80 to 8.08 (results/stopa_no_codec.json).
+# Target: results/ablation/no_codec.json
+model:
+  codec_weight: 0.0

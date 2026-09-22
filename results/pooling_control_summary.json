@@ -1,0 +1,31 @@
+{
+ "_note": "2x2 pooling x codec control. Temporal pooling is the independent variable; layer band, head, capacity, data and all hyperparameters identical across arms.",
+ "split_seed": 42,
+ "fit_seed": 0,
+ "arms": {
+  "mean_std_codec": {
+   "fpr95": 1.1428571428571428,
+   "ood_eer": 3.6571428571428575,
+   "source": "results/ablation/full.json"
+  },
+  "mean_std_nocodec": {
+   "fpr95": 2.697142857142857,
+   "ood_eer": 3.017142857142857,
+   "source": "results/ablation/no_codec.json"
+  },
+  "mean_only_codec": {
+   "fpr95": 1.0514285714285714,
+   "ood_eer": 2.9485714285714284
+  },
+  "mean_only_nocodec": {
+   "fpr95": 2.3085714285714287,
+   "ood_eer": 2.742857142857143
+  }
+ },
+ "codec_benefit_fpr95": {
+  "under_mean_std": 1.5542857142857143,
+  "under_mean_only": 1.2571428571428573,
+  "interaction": 0.29714285714285693
+ },
+ "_historical": "measured before 2026-09-18 with WavLM layers 4-7 and the fixed random residual projection; kept as the record of those controls, not comparable to the current results/ablation/"
+}

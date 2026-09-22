@@ -1,0 +1,6 @@
+# Ablation: score with relative Mahalanobis alone, no conformal margin.
+#
+# Equivalent to ST_ABL_COS_WEIGHT=0.
+# Target: results/ablation/rmd_only.json
+scoring:
+  cos_weight: 0.0

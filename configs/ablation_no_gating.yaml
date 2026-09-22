@@ -1,0 +1,10 @@
+# Ablation: zero every FiLM gate -- naive concatenation, no learned gating.
+#
+# Equivalent to ST_ABL_NO_GATING=1, which zeroes all three betas together. They
+# are listed individually here because a config file has no reason to hide which
+# three numbers the flag moves.
+# Target: results/ablation/no_gating.json
+model:
+  voc_gate_beta: 0.0
+  codec_gate_beta: 0.0
+  tmp_gate_beta: 0.0

@@ -1,0 +1,4 @@
+# The earlier design: the 33->32 residual projection and its FiLM gate stay at their random
+# initialisation (excluded from the optimizer). Targets results/ablation/fixed_proj.json.
+model:
+  train_codec_path: false

@@ -1,0 +1,85 @@
+cff-version: 1.2.0
+message: "If you use this software or its released checkpoints, please cite it."
+title: "sourcetrace: open-set audio deepfake attribution with neural codec residuals (CoRA)"
+version: 1.0.0
+date-released: 2026-09-21
+license: MIT
+repository-code: "https://github.com/pujariaditya/CoRA"
+abstract: >-
+  Attribute a synthetic speech clip to the synthesis model that produced it, or
+  reject it as a model never seen in training. A frozen WavLM-Large front-end, a
+  52-d spectral signature and a 33-d neural-codec reconstruction residual feed a
+  small gated head that produces one 288-d embedding; an anchor-margin plus
+  relative-Mahalanobis score decides known against unseen, and the nearest anchor
+  names the model. On the MLAAD v5 open-set protocol it reaches 0.50% FPR95
+  against a published 3.36% with 99.86% known-model accuracy, and the same model
+  applied to STOPA without retraining reaches 6.80% EER for held-out synthesis
+  models.
+authors:
+  - family-names: Pujari
+    given-names: Aditya
+keywords:
+  - audio-deepfake
+  - source-tracing
+  - open-set-recognition
+  - neural-codec
+  - encodec
+  - wavlm
+  - conformal-prediction
+  - mlaad
+  - stopa
+preferred-citation:
+  type: unpublished
+  title: "CoRA: Robust Open-Set Audio Deepfake Attribution with Neural Codec Residuals"
+  authors:
+    - family-names: Pujari
+      given-names: Aditya
+    - family-names: Rattani
+      given-names: Ajita
+  year: 2027
+references:
+  - type: article
+    title: "Anchoring the Unknown: Open-Set Model Attribution via Proxy-Anchor Learning"
+    year: 2026
+    identifiers:
+      - type: other
+        value: "arXiv:2606.10758"
+    notes: "EUSIPCO 2026. The MLAAD v5 baseline these results are compared against (FPR95 3.36, same threshold convention)."
+    authors:
+      - family-names: Neamtu
+        given-names: Cristian-Teodor
+      - family-names: Mihalache
+        given-names: Serban
+      - family-names: Smeu
+        given-names: Stefan
+      - family-names: Oneata
+        given-names: Dan
+      - family-names: Cucu
+        given-names: Horia
+      - family-names: Burileanu
+        given-names: Dragos
+  - type: conference-paper
+    title: "STOPA: A Dataset of Systematic Variation of Deepfake Audio for Open-Set Source Tracing and Attribution"
+    year: 2025
+    conference:
+      name: "Interspeech 2025"
+    doi: 10.21437/Interspeech.2025-2065
+    identifiers:
+      - type: other
+        value: "arXiv:2505.19644"
+      - type: doi
+        value: 10.5281/zenodo.15606628
+    notes: "The STOPA corpus, its released split and cosine-scoring protocol, and its trained baselines (35.34, 47.75 and 49.55 held-out EER)."
+    authors:
+      - name: "Firc et al."
+  - type: article
+    title: "Advancing Zero-Shot Open-Set Speech Deepfake Source Tracing"
+    year: 2026
+    identifiers:
+      - type: other
+        value: "arXiv:2509.24674"
+    notes: >-
+      Chhibber et al., Odyssey 2026: the 16.43 zero-shot held-out EER, measured on a
+      different data split, so no margin is claimed over it.
+    authors:
+      - name: "Chhibber et al."

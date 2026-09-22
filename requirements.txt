@@ -1,0 +1,16 @@
+# Conservative bounds — see requirements-lock.txt for the exact paper-repro pins.
+numpy>=1.24
+scipy>=1.10
+scikit-learn>=1.2
+soundfile>=0.12
+torch>=2.0
+torchaudio>=2.0
+# EnCodec 24kHz loads via transformers.EncodecModel; encode() unpacking works on
+# 4.38.x and breaks on >=4.57. Pin to the 4.38 line (paper-repro version).
+transformers>=4.38,<4.40
+s3prl>=0.4.15
+# Upper bound is required: transformers <4.40 refuses to import against
+# huggingface-hub >=1.0, so an unbounded spec resolves to a broken install.
+huggingface-hub>=0.20,<1.0
+# configs/*.yaml, read by sourcetrace.config at import time.
+pyyaml>=6.0

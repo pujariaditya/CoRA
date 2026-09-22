@@ -1,0 +1,6 @@
+# Ablation: remove the 52-d phase/modulation signature subspace.
+#
+# Equivalent to ST_ABL_VOC_WEIGHT=0.
+# Target: results/ablation/no_signature.json
+model:
+  voc_weight: 0.0

@@ -1,0 +1,9 @@
+# Front-end read-out control: the deepest band.
+#
+# FPR95 2.0571, the worst of the three. This is the paper's mechanism claim in
+# one number: WavLM's masked-prediction objective trains later layers toward
+# invariance to exactly the fine acoustic detail a synthesis artefact lives in,
+# so generator evidence is discarded upstream of every decision rule.
+# Target: results/variant_band_8_11_meanstd.json
+features:
+  wavlm_layers: [8, 9, 10, 11]

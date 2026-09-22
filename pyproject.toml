@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sourcetrace"
+version = "1.0.0"
+description = "CoRA: open-set audio deepfake attribution with neural codec residuals (MLAAD v5 + STOPA): frozen WavLM, spectral signature and EnCodec residual fused into one embedding with an anchor-margin + relative-Mahalanobis open-set score."
+readme = "README.md"
+# Upper bound is real: the pinned transformers 4.38 line has no 3.13 wheels.
+requires-python = ">=3.10,<3.13"
+license = { file = "LICENSE" }
+authors = [{ name = "Aditya Pujari", email = "adityapujari2324@gmail.com" }]
+keywords = ["audio-deepfake", "source-tracing", "open-set-recognition", "speech", "stopa", "mlaad"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.2",
+    "soundfile>=0.12",
+    "torch>=2.0",
+    "torchaudio>=2.0",
+    # EnCodec 24kHz is loaded via transformers.EncodecModel; its `encode()`
+    # return-unpacking works on 4.38.x and breaks on >=4.57 (API change). Pin to
+    # the 4.38 line used for the paper results.
+    "transformers>=4.38,<4.40",
+    "s3prl>=0.4.15",
+    # Upper bound is required, not cosmetic: transformers <4.40 refuses to import
+    # against huggingface-hub >=1.0, so an unbounded spec resolves to a broken install.
+    "huggingface-hub>=0.20,<1.0",
+    # configs/*.yaml, read by sourcetrace.config at import time.
+    "pyyaml>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/pujariaditya/CoRA"
+Repository = "https://github.com/pujariaditya/CoRA"
+Issues = "https://github.com/pujariaditya/CoRA/issues"
+
+
+[tool.ruff]
+# Pinned so lint results do not depend on which ruff happens to be installed.
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+# BLE and S stay unselected on purpose. The broad `except Exception` swallows in
+# scoring/mahalanobis.py, method.py, config.py and features/_deps.py are
+# load-bearing -- each one is the fallback that keeps a diagnosis readable on a
+# broken interpreter -- and silencing the family is honest where per-site noqa
+# would be noise.
+select = ["E", "F", "I", "W", "UP", "B"]
+
+[tool.setuptools.packages.find]
+include = ["sourcetrace*"]

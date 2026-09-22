@@ -1,0 +1,67 @@
+{
+  "AA01": {
+    "label": "AA01",
+    "acoustic_model_id": "am-01",
+    "vocoder_model_id": "vm-01"
+  },
+  "AA02": {
+    "label": "AA02",
+    "acoustic_model_id": "am-01",
+    "vocoder_model_id": "vm-02"
+  },
+  "AA03": {
+    "label": "AA03",
+    "acoustic_model_id": "am-02",
+    "vocoder_model_id": "vm-03"
+  },
+  "AA04": {
+    "label": "AA04",
+    "acoustic_model_id": "am-02",
+    "vocoder_model_id": "vm-04"
+  },
+  "AA05": {
+    "label": "AA05",
+    "acoustic_model_id": "am-03",
+    "vocoder_model_id": "vm-03"
+  },
+  "AA06": {
+    "label": "AA06",
+    "acoustic_model_id": "am-03",
+    "vocoder_model_id": "vm-04"
+  },
+  "AA07": {
+    "label": "AA07",
+    "acoustic_model_id": "am-04",
+    "vocoder_model_id": "vm-05"
+  },
+  "AA08": {
+    "label": "AA08",
+    "acoustic_model_id": "am-04",
+    "vocoder_model_id": "vm-02"
+  },
+  "AA09": {
+    "label": "AA09",
+    "acoustic_model_id": "am-05",
+    "vocoder_model_id": "vm-01"
+  },
+  "AA10": {
+    "label": "AA10",
+    "acoustic_model_id": "am-05",
+    "vocoder_model_id": "vm-02"
+  },
+  "AA11": {
+    "label": "AA11",
+    "acoustic_model_id": "am-06",
+    "vocoder_model_id": "vm-06"
+  },
+  "AA12": {
+    "label": "AA12",
+    "acoustic_model_id": "am-07",
+    "vocoder_model_id": "vm-06"
+  },
+  "AA13": {
+    "label": "AA13",
+    "acoustic_model_id": "am-08",
+    "vocoder_model_id": "vm-03"
+  }
+}

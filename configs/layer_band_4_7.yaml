@@ -1,0 +1,10 @@
+# Front-end read-out control: the shipped band, re-extracted through the variant
+# pipeline as the matched baseline for the other two arms.
+#
+# FPR95 1.0743. This is NOT comparable to results/ablation/full.json: the
+# re-extraction reproduces the shipped front-end to cosine 0.9997, not bit
+# exactly, so comparing across pipelines would confound extraction drift with
+# the effect under test. Compare it only with the other variant_band_* arms.
+# Target: results/variant_band_4_7_meanstd.json
+features:
+  wavlm_layers: [4, 5, 6, 7]

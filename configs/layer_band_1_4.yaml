@@ -1,0 +1,12 @@
+# Front-end read-out control: the shallowest WavLM band.
+#
+# Best of the three, at FPR95 0.7771 -- the shipped band is NOT the best one, and
+# results/layer_band_summary.json records it. The shipped 4-7 is what every number and
+# every checkpoint uses; this arm exists to price the choice, not to replace it.
+#
+# Changing wavlm_layers invalidates the feature cache. Extract into a separate
+# ST_FEATURE_CACHE, or analysis/pooling_variants.py will read stale .npy blocks
+# that do not match this band.
+# Target: results/variant_band_1_4_meanstd.json
+features:
+  wavlm_layers: [1, 2, 3, 4]

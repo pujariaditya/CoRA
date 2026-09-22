@@ -1,0 +1,35 @@
+{
+ "split_seed": 42,
+ "fit_seed": 0,
+ "residual_projection": "trained",
+ "arms": {
+  "layers_1_4": {
+   "fpr95": 0.5028571428571428,
+   "ood_eer": 2.4457142857142857,
+   "note": "the shipped band"
+  },
+  "layers_4_7": {
+   "fpr95": 0.9142857142857144,
+   "ood_eer": 2.9257142857142857
+  },
+  "layers_8_11": {
+   "fpr95": 1.5771428571428572,
+   "ood_eer": 3.4742857142857146
+  }
+ },
+ "development_split": {
+  "layers_1_4": {
+   "fpr95": 0.6864988558352403,
+   "ood_eer": 1.9450800915331807
+  },
+  "layers_4_7": {
+   "fpr95": 1.0297482837528604,
+   "ood_eer": 2.1052631578947367
+  },
+  "layers_8_11": {
+   "fpr95": 2.1510297482837526,
+   "ood_eer": 3.1578947368421053
+  }
+ },
+ "_note": "Development-split criteria (threshold calibrated on dev-OOD, tested on dev-ID; OOD-EER over the dev split) computed from the same fits; they order the bands the same way, which is how layers 1-4 were selected."
+}

@@ -1,0 +1,14 @@
+{
+ "variant": "band_4_7_meanstd",
+ "split_seed": 42,
+ "fit_seed": 0,
+ "_note": "Re-extracted WavLM block for the named band; signature and codec blocks spliced from the shipped cache. Since 2026-09-18 the shipped front end IS layers 1-4 with the trained residual projection, so the band_1_4 arm and results/ablation/full.json are the same run (identical numbers).",
+ "results": {
+  "mlaad_v5": {
+   "fpr95": 0.9142857142857144,
+   "ood_eer": 2.9257142857142857,
+   "n_known_classes": 65,
+   "n_eval": 9620
+  }
+ }
+}

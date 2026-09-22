@@ -1,0 +1,14 @@
+# Exact versions used for the paper results (the reference build: Python 3.10, CUDA 11.8).
+# Reproduce with: torch from the cu118 index.
+# pip install torch==2.0.1 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
+torch==2.0.1
+torchaudio==2.0.2
+s3prl==0.4.15
+transformers==4.38.1
+librosa==0.10.1
+soundfile==0.12.1
+numpy==1.26.4
+scipy==1.12.0
+scikit-learn==1.4.0
+huggingface-hub==0.20.3
+pyyaml==6.0.1

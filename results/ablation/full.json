@@ -1,0 +1,40 @@
+{
+  "split_seed": 42,
+  "fit_seed": 0,
+  "config": null,
+  "checkpoint": null,
+  "results": {
+    "mlaad_v5": {
+      "fpr95": 0.5028571428571428,
+      "ood_eer": 2.4457142857142857,
+      "id_acc": 99.86285714285714,
+      "n_known_classes": 65,
+      "n_eval": 9620,
+      "n_eval_id": 4375,
+      "n_eval_ood": 5245
+    },
+    "stopa": {
+      "unknown_atk_eer": 6.804350587488092,
+      "six_eers": {
+        "ATK": {
+          "known": 9.235590663702766,
+          "unknown": 6.804350587488092
+        },
+        "AM": {
+          "known": 9.235590663702766,
+          "unknown": 6.804350587488092
+        },
+        "VM": {
+          "known": 3.859055784905262,
+          "unknown": 7.8146633852016505
+        }
+      },
+      "n_tee": 33200,
+      "n_trials": 629800
+    }
+  },
+  "sota": {
+    "mlaad_v5_fpr95": 3.36,
+    "stopa_unknown_atk_eer": 16.43
+  }
+}

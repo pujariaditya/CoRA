@@ -1,0 +1,17 @@
+{
+ "arm": "mean_only_nocodec",
+ "split_seed": 42,
+ "fit_seed": 0,
+ "pooling": "mean-only (std-half zeroed)",
+ "codec_channel": "off",
+ "_note": "Temporal pooling as the independent variable; layer band, head, capacity, data and all hyperparameters identical to the published arms.",
+ "results": {
+  "mlaad_v5": {
+   "fpr95": 2.3085714285714287,
+   "ood_eer": 2.742857142857143,
+   "n_known_classes": 65,
+   "n_eval": 9620
+  }
+ },
+ "_historical": "measured before 2026-09-18 with WavLM layers 4-7 and the fixed random residual projection; kept as the record of those controls, not comparable to the current results/ablation/"
+}

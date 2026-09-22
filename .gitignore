@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Data, weights and run outputs: fetched or rebuilt, never redistributed.
+data/
+checkpoints/
+runs/
+*.pt
+*.ckpt
+*.npy
+
+# Machine-local: absolute paths to a personal research drive. Every path the
+# scripts need is environment-driven, so this file is per-machine by design.
+.st_env.sh
+
+# Paper sources: kept locally, published separately.
+paper/
+
+# Never commit credentials. The Hugging Face token is read from the environment
+# only -- see scripts/upload_weights.py.
+.env
+*.token

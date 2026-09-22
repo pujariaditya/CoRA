@@ -1,0 +1,13 @@
+# Pooling control: drop the std half of the temporal summary.
+#
+# The 2x2 with the codec channel is the point. Making pooling lossier does not
+# grow the codec channel's benefit -- it shrinks it, 1.5543 -> 1.2571 FPR95
+# points, an interaction of -0.2971. The channel's evidence is real and is not a
+# substitute for what pooling discards.
+#
+# ssl_dim halves with the std half gone; feat_dim follows.
+# Target: results/pooling_control_summary.json
+features:
+  pool_stats: [mean]
+  ssl_dim: 1024
+  feat_dim: 1109

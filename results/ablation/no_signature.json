@@ -1,0 +1,21 @@
+{
+  "split_seed": 42,
+  "fit_seed": 0,
+  "config": "ablation_no_signature.yaml",
+  "checkpoint": null,
+  "results": {
+    "mlaad_v5": {
+      "fpr95": 0.5942857142857143,
+      "ood_eer": 2.88,
+      "id_acc": 99.86285714285714,
+      "n_known_classes": 65,
+      "n_eval": 9620,
+      "n_eval_id": 4375,
+      "n_eval_ood": 5245
+    }
+  },
+  "sota": {
+    "mlaad_v5_fpr95": 3.36,
+    "stopa_unknown_atk_eer": 16.43
+  }
+}

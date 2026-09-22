@@ -1,0 +1,137 @@
+# The frozen champion configuration: the values every number in results/ was
+# measured with. SELF-CONTAINED -- there is no inheritance and no base_config.
+#
+# This file encodes exactly the dataclass defaults in sourcetrace/config.py, and
+# that is checked rather than asserted: loading it must produce dataclasses equal
+# to the defaults, field for field. Running with `--config configs/base.yaml` and
+# running with no config are therefore the same run.
+#
+# Why both exist. The dataclasses stay the source of types -- frozen, annotated,
+# with the defaults inline where a reader of the code meets them. This file is the
+# source of *variants*: every ablation below inherits nothing and overrides one
+# thing, so the diff between an arm and the baseline is the whole story of that
+# arm. Before this, an ablation was an environment-variable string in a shell
+# array, and what a given results/ablation/*.json had been fit under lived only
+# in run_ablations.sh.
+#
+# Precedence is defaults -> this file -> ST_ABL_* environment variables. The env
+# layer is last because it is what the command line types, and a file must not
+# quietly beat it.
+
+# ------------------------------------------------------------------------
+# FRONT END -- audio to the 2133-d pooled vector
+# ------------------------------------------------------------------------
+# Changing anything here invalidates the feature cache; extraction does not
+# version its output, so a stale <group>.npy will be read as if it matched.
+features:
+  sample_rate: 16000
+  clip_seconds: 4.0
+  # WavLM layers 1-4, the shallowest band. Selected on the development split and
+  # confirmed on evaluation: FPR95 0.50 (1-4), 0.91 (4-7), 1.58 (8-11) with the trained
+  # residual projection (results/layer_band_summary.json).
+  wavlm_layers: [1, 2, 3, 4]
+  # Per-layer temporal statistics. The std half is load-bearing: dropping it
+  # (mean only) shrinks the codec channel's benefit from 1.5543 to 1.2571.
+  pool_stats: [mean, std]
+  ssl_dim: 2048
+  # The 52-d phase/modulation signature.
+  sig_nfft: 512
+  sig_hop: 160
+  sig_bands: 24
+  sig_mod: 16
+  sig_codec: 12
+  sig_dim: 52
+  # The 33-d EnCodec reconstruction residual -- the contribution. Three
+  # bandwidths, emitted RAW and normalised against train-set statistics later.
+  codec_sr: 24000
+  codec_bandwidths: [1.5, 6.0, 12.0]
+  codec_bands: 8
+  codec_dim: 33
+  feat_dim: 2133
+
+# ------------------------------------------------------------------------
+# HEAD -- factorized gated embedding: the one 288-d embedding z
+# ------------------------------------------------------------------------
+model:
+  fact_am_dim: 192
+  fact_voc_dim: 64
+  fact_codec_dim: 32
+  base_emb_dim: 288
+  # Subspace weights. `codec_weight: 0` is the no-codec ablation: FPR95 1.28 against
+  # 0.50, OOD-EER 3.45 against 2.45, known-model accuracy 99.68 against 99.86.
+  voc_weight: 0.1
+  codec_weight: 0.5
+  # FiLM gate depths. All three to 0.0 is the no-gating ablation (naive concat).
+  voc_gate_beta: 0.30
+  codec_gate_beta: 0.30
+  tmp_gate_beta: 0.030
+  tmp_gate_hidden: 64
+  gate_init_std: 0.05
+  # One embedding for every task (open-set score, known-model label, STOPA); equals
+  # base_emb_dim.
+  emb_dim: 288
+  # The residual projection and its gate are trained with the head. false = the earlier
+  # fixed random projection (FPR95 0.78 instead of 0.50; results/ablation/fixed_proj.json).
+  train_codec_path: true
+
+# ------------------------------------------------------------------------
+# TRAINING -- objective and optimizer
+# ------------------------------------------------------------------------
+train:
+  lr: 3.0e-04
+  # Adam with NO weight decay. The original call relied on the library default;
+  # the paper reports it, so it is stated rather than inferred from an absent
+  # argument. 0.0 is exactly that default, so the fit is unchanged.
+  weight_decay: 0.0
+  anchor_init_std: 0.01
+  epochs: 300
+  batch_size: 512
+  logit_scale: 12.0
+  # The auxiliary head, trained beside the embedding head and never read at inference.
+  xfer_logit_scale: 14.0
+  xfer_loss_weight: 1.0
+  supcon_weight: 0.05
+  supcon_tau: 0.10
+  hamos_weight: 0.03
+  hamos_n_ood: 256
+  hamos_tau: 0.07
+
+# ------------------------------------------------------------------------
+# SCORING -- conformal margin + relative Mahalanobis
+# ------------------------------------------------------------------------
+scoring:
+  cal_holdout: 0.15
+  conf_std_k: 3.5
+  cal_shrink_n0: 20.0
+  conf_lambda: 0.0
+  # Nominal 95%. Measured coverage at this level is 96.11% -- see
+  # results/reliability.json. That measurement is the reason the abstention rule is
+  # described as calibrated rather than merely thresholded.
+  conf_alpha: 0.05
+  # Fusion weights. `dens_weight: 0` is conformal-only; `cos_weight: 0` is
+  # relative-Mahalanobis-only. Both are reported ablations.
+  cos_weight: 1.0
+  dens_weight: 1.0
+  lang_infl_k: 3
+  lang_infl_alpha: 16.0
+  large_os_threshold: 80
+  shrink_gamma_min: 0.05
+  shrink_gamma_max: 0.9
+
+# ------------------------------------------------------------------------
+# PROTOCOL -- the two evaluation splits
+# ------------------------------------------------------------------------
+# The split seed is NOT the fit seed. 42 fixes the family split (eval
+# n=9,620); the head-fit RNG is `--fit-seed`, default 0. Fusing them builds a
+# different, non-protocol split and does not reproduce the headline number.
+# STOPA: no utterance is used for training (the EET attacks are listed for
+# completeness); TEE enrols, Trials probes.
+protocol:
+  panda_seed: 42
+  panda_ood_fraction: 0.15
+  panda_max_per_model: 2000
+  panda_train_ratio: 0.70
+  panda_val_ratio: 0.15
+  stopa_eet_attacks: [AA11, AA12, AA13]
+  stopa_tee_attacks: [AA01, AA03, AA05, AA07, AA10]
+  stopa_unknown_attacks: [AA02, AA04, AA06, AA08, AA09]
